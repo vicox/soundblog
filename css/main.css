@@ -157,6 +157,7 @@ a:visited { color: #205caa; }
 }
 
 .posts .post-date {
+  float: right;
   display: block;
   font-size: 15px;
   color: #818181;
