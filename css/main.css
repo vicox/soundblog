@@ -28,7 +28,6 @@ a:visited { color: #205caa; }
 .wrap:after { clear: both; }
 .wrap {
   max-width: 650px;
-  padding: 0 30px;
   margin: 0 auto;
   zoom: 1;
 }
@@ -40,9 +39,13 @@ a:visited { color: #205caa; }
 /* Site header */
 
 .site-header {
-  margin-top: 60px;
-  min-height: 56px;
+  margin-top: 70px;
+  min-height: 45px;
   background-color: white;
+}
+
+.site-header .wrap {
+  border-bottom: 1px solid #ccc;
 }
 
 .site-title,
@@ -53,14 +56,14 @@ a:visited { color: #205caa; }
   font-size: 26px;
   letter-spacing: -1px;
   float: left;
-  line-height: 56px;
+  line-height: 45px;
   position: relative;
   z-index: 1;
 }
 
 .site-nav {
   float: right;
-  line-height: 56px;
+  line-height: 45px;
 }
 
 .site-nav .menu-icon { display: none; }
@@ -143,7 +146,10 @@ a:visited { color: #205caa; }
 
 .home h1 { margin-bottom: 25px; }
 
-.posts { list-style-type: none; }
+.posts {
+  margin-top: 10px;
+  list-style-type: none;
+}
 
 .posts li { margin-bottom: 20px; }
 
