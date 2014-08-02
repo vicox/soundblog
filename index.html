@@ -5,12 +5,25 @@ layout: default
 <div class="home">
 
   <ul class="posts">
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
       <li>
         <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
         <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <iframe width="100%" height="550"  scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{ post.track_id }}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
       </li>
     {% endfor %}
   </ul>
+
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.next_page %}
+    <a class="previous" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Older posts</a>
+    {% endif %}
+
+    {% if paginator.previous_page %}
+    <a class="next" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Newer posts &raquo; </a>
+    {% endif %}
+  </div>
+  {% endif %}
 
 </div>
