@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Soundblog : A soundblog based on Jekyll and the Inspired theme">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Soundblog</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/vicox/soundblog">View on GitHub</a>
+
+          <h1 id="project_title">Soundblog</h1>
+          <h2 id="project_tagline">A soundblog based on Jekyll and the Inspired theme</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/vicox/soundblog/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/vicox/soundblog/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="soundblog" class="anchor" href="#soundblog"><span class="octicon octicon-link"></span></a>Soundblog</h1>
+
+<p><a href="https://github.com/vicox/soundblog">Soundblog</a> is a blog based on <a href="http://jekyllrb.com/">Jekyll</a> and
+the <a href="https://github.com/vicox/inspired">Inspired</a> theme that allows you to easily post <a href="https://soundcloud.com">Soundcloud</a> tracks.</p>
+
+<h2>
+<a name="posting" class="anchor" href="#posting"><span class="octicon octicon-link"></span></a>Posting</h2>
+
+<p>Use the Python script <code>post.py</code> to post a track from Soundcloud. The first parameter ist the Soundcloud track URL.
+The second parameter is an optional posting date with the format YYYY-MM-DD. If you provide a date, the time will
+be set to 13:00.</p>
+
+<h3>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
+
+<p>You need to have Python and the <a href="https://github.com/soundcloud/soundcloud-python">Python Soundcloud module</a> installed.</p>
+
+<pre><code>pip install soundcloud
+</code></pre>
+
+<p>Then you need to set the client ID environment variable SOUNDCLOUD_CLIENT_ID. You get a client ID if you create a
+Soundcloud application here: <a href="http://soundcloud.com/you/apps/new">http://soundcloud.com/you/apps/new</a></p>
+
+<pre><code>export SOUNDCLOUD_CLIENT_ID="&lt;client id&gt;"
+</code></pre>
+
+<h3>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h3>
+
+<pre><code>./post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart
+</code></pre>
+
+<p>or with a specific date</p>
+
+<pre><code>./post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart 2014-08-02
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Soundblog maintained by <a href="https://github.com/vicox">vicox</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
