@@ -31,7 +31,7 @@ if len(sys.argv) > 2:
 else:
     today = time.localtime()
 
-f = open(os.path.join('_posts/', time.strftime('%Y-%m-%d', today) + '-' + track.permalink + '.markdown'), 'w')
+f = open(os.path.join('_posts/', time.strftime('%Y-%m-%d', today) + '-' + track.permalink + '.md'), 'w')
 
 f.write('---' + '\n')
 f.write('layout: post' + '\n')
