@@ -31,13 +31,14 @@ if len(sys.argv) > 2:
 else:
     today = time.localtime()
 
-f = open(os.path.join('_posts/', time.strftime('%Y-%m-%d', today) + '-' + track.permalink + '.md'), 'w')
+f = open(os.path.join('_posts/', time.strftime('%Y-%m-%d', today) + '-' + track.user['permalink'] + '-' + track.permalink + '.md'), 'w')
 
 f.write('---' + '\n')
 f.write('layout: post' + '\n')
 f.write('title: "' + track.title.encode('utf-8').replace('"', '\\"') + '"' + '\n')
 f.write('date: ' + time.strftime('%Y-%m-%d %H:%M:%S %z', today) + '\n')
 f.write('track_id: ' + str(track.id) + '\n')
+f.write('track_url: ' + track.permalink_url + '\n')
 f.write('---')
 
 f.close()
