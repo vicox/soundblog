@@ -40,7 +40,7 @@ the <a href="https://github.com/vicox/inspired">Inspired</a> theme that allows y
 <h2>
 <a name="posting" class="anchor" href="#posting"><span class="octicon octicon-link"></span></a>Posting</h2>
 
-<p>Use the Python script <code>post.py</code> to post a track from Soundcloud. The first parameter ist the Soundcloud track URL.
+<p>Use the Python script <code>_post.py</code> to post a track from Soundcloud. The first parameter ist the Soundcloud track URL.
 The second parameter is an optional posting date with the format YYYY-MM-DD. If you provide a date, the time will
 be set to 13:00.</p>
 
@@ -58,15 +58,20 @@ Soundcloud application here: <a href="http://soundcloud.com/you/apps/new">http:/
 <pre><code>export SOUNDCLOUD_CLIENT_ID="&lt;client id&gt;"
 </code></pre>
 
+<p>Now make <code>_post.py</code> executable.</p>
+
+<pre><code>chmod +x _post.py
+</code></pre>
+
 <h3>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h3>
 
-<pre><code>./post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart
+<pre><code>./_post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart
 </code></pre>
 
 <p>or with a specific date</p>
 
-<pre><code>./post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart 2014-08-02
+<pre><code>./_post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart 2014-08-02
 </code></pre>
       </section>
     </div>
