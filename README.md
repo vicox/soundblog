@@ -5,7 +5,7 @@ the [Inspired](https://github.com/vicox/inspired) theme that allows you to easil
 
 ## Posting
 
-Use the Python script `post.py` to post a track from Soundcloud. The first parameter ist the Soundcloud track URL.
+Use the Python script `_post.py` to post a track from Soundcloud. The first parameter ist the Soundcloud track URL.
 The second parameter is an optional posting date with the format YYYY-MM-DD. If you provide a date, the time will
 be set to 13:00.
 
@@ -19,13 +19,16 @@ Soundcloud application here: http://soundcloud.com/you/apps/new
 
     export SOUNDCLOUD_CLIENT_ID="<client id>"
     
-    
+  
+Now make `_post.py` executable.
+
+    chmod +x _post.py
 
 ### Example
-    ./post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart
+    ./_post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart
     
 or with a specific date
 
-    ./post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart 2014-08-02
+    ./_post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart 2014-08-02
     
     
