@@ -38,6 +38,8 @@ f.write('layout: post' + '\n')
 f.write('title: "' + track.title.encode('utf-8').replace('"', '\\"') + '"' + '\n')
 f.write('date: ' + time.strftime('%Y-%m-%d %H:%M:%S %z', today) + '\n')
 f.write('track_id: ' + str(track.id) + '\n')
+if 'track' != track.kind:
+    f.write('track_kind: ' + track.kind + '\n')
 f.write('track_url: ' + track.permalink_url + '\n')
 f.write('---')
 
