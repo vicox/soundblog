@@ -1,0 +1,12 @@
+.github {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.github .posts .actions {
+  text-align: right;
+}
+
+.github .posts .actions a {
+  margin-left: 5px;
+}

@@ -1,0 +1,44 @@
+---
+layout: admin
+---
+
+<script type="text/template" id="login-template">
+  <h1 class="page-header">Login to Github</h1>
+  <form role="form">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</script>
+
+<script type="text/template" id="posts-template">
+  <h1 class="page-header">Posts</h1>
+  <table class="table posts">
+    <thead>
+    <th>Name</th>
+    <th class="actions">Actions</th>
+    </thead>
+    <tbody>
+    <% _.each(posts, function(post) { %>
+      <td><%= post.name %></td>
+      <td class="actions">
+        <a href="#/edit/<%= post.name %>"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#/delete/<%= post.name %>"><span class="glyphicon glyphicon-trash"></span></a>
+      </td>
+    <% }); %>
+    </tbody>
+  </table>
+</script>
+
+<div class="github"
+     data-username="{{ site.admin.github_username }}"
+     data-repo="{{ site.admin.github_repo }}"></div>
+
+<script src="../js/octokit.js"></script>
+<script src="../js/admin.js"></script>
