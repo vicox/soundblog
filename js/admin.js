@@ -1,10 +1,8 @@
 (function() {
 
-    var redirectTo = window.location.hash || '#';
-    window.location = '#/login';
+    var next = window.location.hash;
+    window.location.hash = '/login';
 
-    var github;
-    var repo;
     var branch;
 
     var LoginView = Backbone.View.extend({
@@ -14,21 +12,34 @@
         },
         submit: function (e) {
             e.preventDefault();
-            $(e.currentTarget).find('button[type=submit]').button('loading');
-            $(e.currentTarget).find('input').prop('disabled', true);
+            disableForm($(e.currentTarget));
 
             var username = $(e.currentTarget).find('#username').val();
             var password = $(e.currentTarget).find('#password').val();
 
-            github = new Octokit({
-                username: username,
-                password: password
-            });
+            if (username && password) {
+                var github = new Octokit({
+                    username: username,
+                    password: password
+                });
 
-            repo = github.getRepo(this.$el.data('username'), this.$el.data('repo'));
-            branch = repo.getBranch("master");
+                var repo = github.getRepo(this.$el.data('username'), this.$el.data('repo'));
 
-            window.location = redirectTo;
+                repo.canCollaborate().then(function(canCollaborate) {
+                    if (canCollaborate) {
+                        branch = repo.getBranch("master");
+                        window.location.hash = next;
+
+                    } else {
+                        formError($(e.currentTarget), 'You are not a collaborator of this repository');
+                    }
+                }).fail(function() {
+                    formError($(e.currentTarget), 'Incorrect Github credentials');
+                });
+
+            } else {
+                formError($(e.currentTarget), 'Username and password are required');
+            }
         },
         render: function (options) {
             this.$el.html($('#login-template').html());
@@ -55,8 +66,7 @@
         },
         submit: function (e) {
             e.preventDefault();
-            $(e.currentTarget).find('button[type=submit]').button('loading');
-            $(e.currentTarget).find('input').prop('disabled', true);
+            disableForm($(e.currentTarget));
 
             var fileName = $(e.currentTarget).find('#fileName').val();
             var title = $(e.currentTarget).find('#title').val();
@@ -142,6 +152,22 @@
 
     function stripQuotes(s) {
         return s.replace(/^"+|"+$/g, '');
+    }
+
+    function disableForm($form) {
+        $form.find('button[type=submit]').button('loading');
+        $form.find('input').prop('disabled', true);
+    }
+
+    function enableForm($form) {
+        $form.find('button[type=submit]').button('reset');
+        $form.find('input').prop('disabled', false);
+    }
+
+    function formError($form, error) {
+        $form.find('.error').remove();
+        $form.prepend(_.template($('#error-template').html(), {error: error}));
+        enableForm($form);
     }
 
 })();

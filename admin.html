@@ -2,6 +2,15 @@
 layout: admin
 ---
 
+<script type="text/template" id="error-template">
+  <div class="error alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+      <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+    </button>
+    <%= error %>
+  </div>
+</script>
+
 <script type="text/template" id="login-template">
   <h1 class="page-header">Login to Github</h1>
   <form role="form" class="login">
@@ -38,7 +47,7 @@ layout: admin
 
 <script type="text/template" id="post-edit-template">
   <h1 class="page-header">Edit Post</h1>
-  <p><%= post.fileName %></p>
+  <h3><%= post.fileName %></h3>
   <form role="form" class="edit-post">
     <div class="form-group">
       <label for="title">Title</label>
