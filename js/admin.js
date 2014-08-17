@@ -12,6 +12,7 @@
         },
         submit: function (e) {
             e.preventDefault();
+
             var $form = $(e.currentTarget);
             disableForm($form);
 
@@ -67,13 +68,13 @@
         },
         submit: function (e) {
             e.preventDefault();
+
             var $form = $(e.currentTarget);
             disableForm($form);
 
             var fileName = $form.find('#fileName').val();
             var title = $form.find('#title').val();
 
-            console.log('_posts/' + fileName);
             branch.contents('_posts/' + fileName)
                 .then(function (content) {
                     var metaMap = contentToMap(content);
