@@ -10,3 +10,7 @@
 .github .posts .actions a {
   margin-left: 5px;
 }
+
+.github form .cancel {
+  margin-left: 10px;
+}

@@ -4,7 +4,7 @@ layout: admin
 
 <script type="text/template" id="login-template">
   <h1 class="page-header">Login to Github</h1>
-  <form role="form">
+  <form role="form" class="login">
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" id="username">
@@ -21,7 +21,7 @@ layout: admin
   <h1 class="page-header">Posts</h1>
   <table class="table posts">
     <thead>
-    <th>Name</th>
+    <th>File Name</th>
     <th class="actions">Actions</th>
     </thead>
     <tbody>
@@ -34,6 +34,20 @@ layout: admin
     <% }); %>
     </tbody>
   </table>
+</script>
+
+<script type="text/template" id="post-edit-template">
+  <h1 class="page-header">Edit Post</h1>
+  <p><%= post.fileName %></p>
+  <form role="form" class="edit-post">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="test" class="form-control" id="title" value="<%= post.meta.title %>">
+    </div>
+    <input type="hidden" id="fileName" value="<%= post.fileName %>">
+    <button type="submit" class="btn btn-default">Submit</button>
+    <a class="cancel" href="#">Cancel</a>
+  </form>
 </script>
 
 <div class="github"

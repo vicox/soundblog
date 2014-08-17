@@ -10,7 +10,7 @@
     var LoginView = Backbone.View.extend({
         el: '.github',
         events: {
-            'submit': 'submit'
+            'submit .login': 'submit'
         },
         submit: function (e) {
             e.preventDefault();
@@ -46,10 +46,49 @@
         }
     });
 
+    var PostEditView = Backbone.View.extend({
+        el: '.github',
+        events: {
+            'submit .edit-post': 'submit'
+        },
+        submit: function (e) {
+            e.preventDefault();
+
+            var fileName = $(e.currentTarget).find('#fileName').val();
+            var title = $(e.currentTarget).find('#title').val();
+
+            console.log('_posts/' + fileName);
+            branch.contents('_posts/' + fileName)
+                .then(function (content) {
+                    var metaMap = contentToMap(content);
+                    metaMap['title'] = '"' + title + '"';
+                    var newContent = mapToContent(metaMap);
+
+                    branch.write('_posts/' + fileName, newContent, 'edit post', false)
+                        .then(function() {
+                            window.location = '#';
+                        });
+                });
+
+
+        },
+        render: function (options) {
+            var that = this;
+            branch.contents('_posts/' + options.fileName)
+                .then(function (content) {
+                    var template = _.template($('#post-edit-template').html(), {post: {
+                        fileName: options.fileName,
+                        meta: contentToMap(content, true)}});
+                    that.$el.html(template);
+                });
+        }
+    });
+
     var Router = Backbone.Router.extend({
         routes: {
             "login": "login",
-            "": "posts"
+            "": "posts",
+            "edit/:fileName": "edit"
         }
     });
 
@@ -60,7 +99,45 @@
     router.on('route:posts', function () {
         new PostsView().render();
     });
+    router.on('route:edit', function (fileName) {
+        new PostEditView().render({fileName: fileName});
+    });
 
     Backbone.history.start();
+
+
+    function contentToMap(content, shouldStripQuotes) {
+        var map = {};
+        var lines = content.split('\n');
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].indexOf(':') > 0) {
+                var key = lines[i].substring(0, lines[i].indexOf(':'));
+                var value = lines[i].substring(lines[i].indexOf(':') + 1, lines[i].length);
+                value = stripWhitespaces(value);
+                if (typeof shouldStripQuotes !== 'undefined' && shouldStripQuotes) {
+                    value = stripQuotes(value);
+                }
+                map[key] = value;
+            }
+        }
+        return map;
+    }
+
+    function mapToContent(map) {
+        var content = '---\n';
+        for (var key in map) {
+            content += key +': ' + map[key] + '\n';
+        }
+        content += '---';
+        return content;
+    }
+
+    function stripWhitespaces(s) {
+        return s.replace(/^\s+|\s+$/g, '');
+    }
+
+    function stripQuotes(s) {
+        return s.replace(/^"+|"+$/g, '');
+    }
 
 })();
