@@ -14,6 +14,8 @@
         },
         submit: function (e) {
             e.preventDefault();
+            $(e.currentTarget).find('button[type=submit]').button('loading');
+            $(e.currentTarget).find('input').prop('disabled', true);
 
             var username = $(e.currentTarget).find('#username').val();
             var password = $(e.currentTarget).find('#password').val();
@@ -53,6 +55,8 @@
         },
         submit: function (e) {
             e.preventDefault();
+            $(e.currentTarget).find('button[type=submit]').button('loading');
+            $(e.currentTarget).find('input').prop('disabled', true);
 
             var fileName = $(e.currentTarget).find('#fileName').val();
             var title = $(e.currentTarget).find('#title').val();
