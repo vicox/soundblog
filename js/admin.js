@@ -83,7 +83,7 @@
 
                     branch.write('_posts/' + fileName, newContent, 'edit post', false)
                         .then(function() {
-                            window.location = '#';
+                            window.location.hash = '';
                         });
                 });
 
