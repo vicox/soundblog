@@ -12,10 +12,11 @@
         },
         submit: function (e) {
             e.preventDefault();
-            disableForm($(e.currentTarget));
+            var $form = $(e.currentTarget);
+            disableForm($form);
 
-            var username = $(e.currentTarget).find('#username').val();
-            var password = $(e.currentTarget).find('#password').val();
+            var username = $form.find('#username').val();
+            var password = $form.find('#password').val();
 
             if (username && password) {
                 var github = new Octokit({
@@ -31,14 +32,14 @@
                         window.location.hash = next;
 
                     } else {
-                        formError($(e.currentTarget), 'You are not a collaborator of this repository');
+                        formError($form, 'You are not a collaborator of this repository');
                     }
                 }).fail(function() {
-                    formError($(e.currentTarget), 'Incorrect Github credentials');
+                    formError($form, 'Incorrect Github credentials');
                 });
 
             } else {
-                formError($(e.currentTarget), 'Username and password are required');
+                formError($form, 'Username and password are required');
             }
         },
         render: function (options) {
@@ -66,10 +67,11 @@
         },
         submit: function (e) {
             e.preventDefault();
-            disableForm($(e.currentTarget));
+            var $form = $(e.currentTarget);
+            disableForm($form);
 
-            var fileName = $(e.currentTarget).find('#fileName').val();
-            var title = $(e.currentTarget).find('#title').val();
+            var fileName = $form.find('#fileName').val();
+            var title = $form.find('#title').val();
 
             console.log('_posts/' + fileName);
             branch.contents('_posts/' + fileName)
