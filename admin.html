@@ -31,14 +31,13 @@ layout: admin
   <table class="table posts">
     <thead>
     <th>File Name</th>
-    <th class="actions">Actions</th>
+    <th class="actions"></th>
     </thead>
     <tbody>
     <% _.each(posts, function(post) { %>
-      <td><%= post.name %></td>
+      <td><a href="#/edit/<%= post.name %>"><%= post.name %></a></td>
       <td class="actions">
-        <a href="#/edit/<%= post.name %>"><span class="glyphicon glyphicon-pencil"></span></a>
-        <a href="#/delete/<%= post.name %>"><span class="glyphicon glyphicon-trash"></span></a>
+        <a href="#/delete/<%= post.name %>" class="danger"><span class="glyphicon glyphicon-trash"></span></a>
       </td>
     <% }); %>
     </tbody>
