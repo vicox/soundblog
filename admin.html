@@ -52,6 +52,10 @@ layout: admin
       <label for="title">Title</label>
       <input type="test" class="form-control" id="title" value="<%= post.meta.title %>">
     </div>
+    <div class="form-group">
+      <label for="title">Date</label>
+      <input type="test" class="form-control" id="date" value="<%= post.meta.date %>">
+    </div>
     <input type="hidden" id="fileName" value="<%= post.fileName %>">
     <button type="submit" class="btn btn-primary" data-loading-text="Saving...">Save</button>
     <a class="cancel" href="#">Cancel</a>

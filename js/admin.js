@@ -74,17 +74,32 @@
 
             var fileName = $form.find('#fileName').val();
             var title = $form.find('#title').val();
+            var date = $form.find('#date').val();
 
             branch.contents('_posts/' + fileName)
                 .then(function (content) {
                     var metaMap = contentToMap(content);
                     metaMap['title'] = '"' + title + '"';
+                    metaMap['date'] = date;
+
                     var newContent = mapToContent(metaMap);
 
-                    branch.write('_posts/' + fileName, newContent, 'edit post', false)
-                        .then(function() {
-                            window.location.hash = '';
-                        });
+                    var dayFromDate = date.substring(0, 10);
+                    if (fileName.indexOf(dayFromDate) == 0) {
+                        branch.write('_posts/' + fileName, newContent, 'edit post', false)
+                            .then(function() {
+                                window.location.hash = '';
+                            });
+                    } else {
+                        var newFileName = dayFromDate + fileName.substring(10, fileName.length);
+                        branch.write('_posts/' + newFileName, newContent, 'create post', false)
+                            .then(function() {
+                                branch.remove('_posts/' + fileName, 'delete post')
+                                    .then(function() {
+                                        window.location.hash = '';
+                                    });
+                            });
+                    }
                 });
 
 
