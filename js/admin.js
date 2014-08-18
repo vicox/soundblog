@@ -57,6 +57,9 @@
                     posts = JSON.parse(posts);
                     var template = _.template($('#posts-template').html(), {posts: posts});
                     that.$el.html(template);
+                }).fail(function() {
+                    var template = _.template($('#posts-template').html());
+                    that.$el.html(template);
                 });
         }
     });
@@ -116,11 +119,38 @@
         }
     });
 
+    var PostDeleteView = Backbone.View.extend({
+        el: '.github',
+        events: {
+            'submit .delete-post': 'submit'
+        },
+        submit: function (e) {
+            e.preventDefault();
+
+            var $form = $(e.currentTarget);
+            disableForm($form);
+
+            var fileName = $form.find('#fileName').val();
+
+            branch.remove('_posts/' + fileName, 'delete post')
+                .then(function() {
+                    window.location.hash = '';
+                });
+
+
+        },
+        render: function (options) {
+            var template = _.template($('#post-delete-template').html(), {post: {fileName: options.fileName}});
+            this.$el.html(template);
+        }
+    });
+
     var Router = Backbone.Router.extend({
         routes: {
             "login": "login",
             "": "posts",
-            "edit/:fileName": "edit"
+            "edit/:fileName": "edit",
+            "delete/:fileName": "delete"
         }
     });
 
@@ -133,6 +163,9 @@
     });
     router.on('route:edit', function (fileName) {
         new PostEditView().render({fileName: fileName});
+    });
+    router.on('route:delete', function (fileName) {
+        new PostDeleteView().render({fileName: fileName});
     });
 
     Backbone.history.start();
