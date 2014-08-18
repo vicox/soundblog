@@ -1,16 +1,16 @@
-.github {
+.admin {
   width: 600px;
   margin: 0 auto;
 }
 
-.github .posts .actions {
+.admin .github .posts .actions {
   text-align: right;
 }
 
-.github .posts .actions a {
+.admin .github .posts .actions a {
   margin-left: 5px;
 }
 
-.github form .cancel {
+.admin .github form .cancel {
   margin-left: 10px;
 }

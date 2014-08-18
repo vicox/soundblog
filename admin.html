@@ -12,7 +12,7 @@ layout: admin
 </script>
 
 <script type="text/template" id="login-template">
-  <h1 class="page-header">Login to Github</h1>
+  <h3>Login to Github</h3>
   <form role="form" class="login">
     <div class="form-group">
       <label for="username">Username</label>
@@ -27,7 +27,7 @@ layout: admin
 </script>
 
 <script type="text/template" id="posts-template">
-  <h1 class="page-header">Posts</h1>
+  <h3>Posts</h3>
   <table class="table posts">
     <thead>
     <th>File Name</th>
@@ -50,7 +50,6 @@ layout: admin
 </script>
 
 <script type="text/template" id="post-edit-template">
-  <h1 class="page-header">Edit Post</h1>
   <h3><%= post.fileName %></h3>
   <form role="form" class="edit-post">
     <div class="form-group">
@@ -68,7 +67,6 @@ layout: admin
 </script>
 
 <script type="text/template" id="post-delete-template">
-  <h1 class="page-header">Delete Post</h1>
   <h3><%= post.fileName %></h3>
   <form role="form" class="delete-post">
     <div class="alert alert-danger alert-dismissible" role="alert">
