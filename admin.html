@@ -34,7 +34,7 @@ layout: admin
     <th class="actions">Actions</th>
     </thead>
     <tbody>
-    <% if (typeof(date) != "undefined") { %>
+    <% if (typeof(posts) != "undefined") { %>
       <% _.each(posts, function(post) { %>
         <td><%= post.name %></td>
         <td class="actions">
