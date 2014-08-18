@@ -1,7 +1,7 @@
 (function() {
 
-    var next = window.location.hash;
-    window.location.hash = '/login';
+    var next = window.location.hash = (window.location.hash != '#/login') ? window.location.hash : '';
+    window.location.hash = '#/login';
 
     var branch;
 
@@ -64,6 +64,20 @@
         }
     });
 
+    var PostShowView = Backbone.View.extend({
+        el: '.github',
+        render: function (options) {
+            var that = this;
+            branch.contents('_posts/' + options.fileName)
+                .then(function (content) {
+                    var template = _.template($('#post-show-template').html(), {post: {
+                        fileName: options.fileName,
+                        meta: contentToMap(content, true)}});
+                    that.$el.html(template);
+                });
+        }
+    });
+
     var PostEditView = Backbone.View.extend({
         el: '.github',
         events: {
@@ -91,7 +105,7 @@
                     if (fileName.indexOf(dayFromDate) == 0) {
                         branch.write('_posts/' + fileName, newContent, 'edit post', false)
                             .then(function() {
-                                window.location.hash = '';
+                                window.location.hash = '#/show/' +fileName;
                             });
                     } else {
                         var newFileName = dayFromDate + fileName.substring(10, fileName.length);
@@ -99,7 +113,7 @@
                             .then(function() {
                                 branch.remove('_posts/' + fileName, 'delete post')
                                     .then(function() {
-                                        window.location.hash = '';
+                                        window.location.hash = '#/show/' + newFileName;
                                     });
                             });
                     }
@@ -134,7 +148,7 @@
 
             branch.remove('_posts/' + fileName, 'delete post')
                 .then(function() {
-                    window.location.hash = '';
+                    window.location.hash = '#';
                 });
 
 
@@ -149,6 +163,7 @@
         routes: {
             "login": "login",
             "": "posts",
+            "show/:fileName": "show",
             "edit/:fileName": "edit",
             "delete/:fileName": "delete"
         }
@@ -160,6 +175,9 @@
     });
     router.on('route:posts', function () {
         new PostsView().render();
+    });
+    router.on('route:show', function (fileName) {
+        new PostShowView().render({fileName: fileName});
     });
     router.on('route:edit', function (fileName) {
         new PostEditView().render({fileName: fileName});

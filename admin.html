@@ -27,26 +27,32 @@ layout: admin
 </script>
 
 <script type="text/template" id="posts-template">
-  <h3>Posts</h3>
-  <table class="table posts">
-    <thead>
-    <th>File Name</th>
-    <th class="actions">Actions</th>
-    </thead>
-    <tbody>
-    <% if (typeof(posts) != "undefined") { %>
+  <h3>All Posts</h3>
+  <% if (typeof(posts) != 'undefined') { %>
+    <div class="list-group posts">
       <% _.each(posts, function(post) { %>
-        <td><%= post.name %></td>
-        <td class="actions">
-          <a href="#/edit/<%= post.name %>"><span class="glyphicon glyphicon-pencil"></span></a>
-          <a href="#/delete/<%= post.name %>"><span class="glyphicon glyphicon-trash"></span></a>
-        </td>
+        <a href="#/show/<%= post.name %>" class="list-group-item"><%= post.name %></a>
       <% }); %>
-    <% } else { %>
-      <td colspan="2">No posts found.</td>
-    <% } %>
-    </tbody>
-  </table>
+    </div>
+  <% } else { %>
+    <p>No posts found.</p>
+  <% } %>
+</script>
+
+<script type="text/template" id="post-show-template">
+  <h3><%= post.fileName %></h3>
+  <div class="post">
+    <div class="actions">
+      <div class="actions-left">
+        <a href="#" class="text">&laquo; All Posts</a>
+      </div>
+      <div class="actions-right">
+        <a href="#/edit/<%= post.fileName %>" class="btn btn-default" role="button">Edit</a>
+        <a href="#/delete/<%= post.fileName %>" class="btn btn-danger" role="button">Delete</a>
+      </div>
+    </div>
+    <iframe width="100%" height="550" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/<% if (typeof(post.meta.track_kind) != 'undefined' && post.meta.track_kind == 'playlist') { %>playlists<% } else { %>tracks<% } %>/<%= post.meta.track_id %>&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+  </div>
 </script>
 
 <script type="text/template" id="post-edit-template">
@@ -62,7 +68,7 @@ layout: admin
     </div>
     <input type="hidden" id="fileName" value="<%= post.fileName %>">
     <button type="submit" class="btn btn-primary" data-loading-text="Saving...">Save</button>
-    <a class="cancel" href="#">Cancel</a>
+    <a class="cancel" href="#/show/<%= post.fileName %>">Cancel</a>
   </form>
 </script>
 
@@ -74,7 +80,7 @@ layout: admin
     </div>
     <input type="hidden" id="fileName" value="<%= post.fileName %>">
     <button type="submit" class="btn btn-danger" data-loading-text="Deleting...">Delete</button>
-    <a class="cancel" href="#">Cancel</a>
+    <a class="cancel" href="#/show/<%= post.fileName %>">Cancel</a>
   </form>
 </script>
 

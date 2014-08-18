@@ -1,5 +1,5 @@
 .admin {
-  width: 600px;
+  width: 550px;
   margin: 0 auto;
 }
 
@@ -13,4 +13,30 @@
 
 .admin .github form .cancel {
   margin-left: 10px;
+}
+
+.admin .github .post .actions {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.admin .github .post .actions a.text {
+  padding: 6px 0;
+  display: inline-block;
+}
+
+.admin .github .post .actions-right {
+  float: right;
+}
+
+.admin .github .post .actions-right a {
+  margin-left: 5px;
+}
+
+.admin .github .post .actions-left {
+  float: left;
+}
+
+.admin .github .post .actions-left a {
+  margin-right: 5px;
 }
