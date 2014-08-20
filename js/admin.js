@@ -6,7 +6,7 @@
     var branch;
 
     var LoginView = Backbone.View.extend({
-        el: '.github',
+        el: '.posts',
         events: {
             'submit .login': 'submit'
         },
@@ -49,7 +49,7 @@
     });
 
     var PostsView = Backbone.View.extend({
-        el: '.github',
+        el: '.posts',
         render: function (options) {
             var that = this;
             branch.contents('_posts')
@@ -67,7 +67,7 @@
     });
 
     var PostShowView = Backbone.View.extend({
-        el: '.github',
+        el: '.posts',
         render: function (options) {
             var that = this;
             branch.contents('_posts/' + options.fileName)
@@ -81,7 +81,7 @@
     });
 
     var PostEditView = Backbone.View.extend({
-        el: '.github',
+        el: '.posts',
         events: {
             'submit .edit-post': 'submit'
         },
@@ -136,7 +136,7 @@
     });
 
     var PostDeleteView = Backbone.View.extend({
-        el: '.github',
+        el: '.posts',
         events: {
             'submit .delete-post': 'submit'
         },
@@ -168,7 +168,7 @@
     });
 
     var PostCreateView = Backbone.View.extend({
-        el: '.github',
+        el: '.posts',
         events: {
             'submit .create-post': 'submit',
             'submit .docreate-post': 'create'

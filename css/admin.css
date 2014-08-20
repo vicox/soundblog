@@ -4,45 +4,45 @@
   margin-bottom: 60px;
 }
 
-.admin .github > h3 {
+.admin .posts > h3 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.admin .github iframe {
+.admin .posts iframe {
   margin-bottom: 10px;
 }
 
-.admin .github form .cancel {
+.admin .posts form .cancel {
   margin-left: 10px;
 }
 
-.admin .github .all-posts .actions {
+.admin .posts .all-posts .actions {
   margin-top: -45px;
 }
 
-.admin .github .actions {
+.admin .posts .actions {
   margin-bottom: 10px;
   overflow: hidden;
 }
 
-.admin .github .actions a.text {
+.admin .posts .actions a.text {
   padding: 6px 0;
   display: inline-block;
 }
 
-.admin .github .actions-right {
+.admin .posts .actions-right {
   float: right;
 }
 
-.admin .github .actions-right a {
+.admin .posts .actions-right a {
   margin-left: 5px;
 }
 
-.admin .github .actions-left {
+.admin .posts .actions-left {
   float: left;
 }
 
-.admin .github .actions-left a {
+.admin .posts .actions-left a {
   margin-right: 5px;
 }
