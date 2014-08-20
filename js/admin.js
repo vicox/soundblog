@@ -53,9 +53,11 @@
         render: function (options) {
             var that = this;
             branch.contents('_posts')
-                .then(function (posts) {
-                    posts = JSON.parse(posts);
-                    var template = _.template($('#posts-template').html(), {posts: posts});
+                .then(function (files) {
+                    files = JSON.parse(files);
+                    files = _.sortBy(files, function(file){ return file.name });
+                    files.reverse();
+                    var template = _.template($('#posts-template').html(), {files: files});
                     that.$el.html(template);
                 }).fail(function() {
                     var template = _.template($('#posts-template').html());
