@@ -1,6 +1,19 @@
 .admin {
   width: 550px;
   margin: 0 auto;
+  margin-bottom: 60px;
+}
+
+.admin .github iframe {
+  margin-bottom: 10px;
+}
+
+.admin .github .has-actions {
+  overflow: hidden;
+}
+
+.admin .github .has-actions .action {
+  float: right;
 }
 
 .admin .github .posts .actions {

@@ -27,7 +27,7 @@ layout: admin
 </script>
 
 <script type="text/template" id="posts-template">
-  <h3>All Posts</h3>
+  <h3 class="has-actions">All Posts <a href="#/create" class="btn btn-primary action" role="button">New Post</a></h3>
   <% if (typeof(posts) != 'undefined') { %>
     <div class="list-group posts">
       <% _.each(posts, function(post) { %>
@@ -60,12 +60,13 @@ layout: admin
   <form role="form" class="edit-post">
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="test" class="form-control" id="title" value="<%= post.meta.title %>">
+      <input type="text" class="form-control" id="title" value="<%= post.meta.title %>">
     </div>
     <div class="form-group">
       <label for="title">Date</label>
-      <input type="test" class="form-control" id="date" value="<%= post.meta.date %>">
+      <input type="text" class="form-control" id="date" value="<%= post.meta.date %>">
     </div>
+    <iframe width="100%" height="550" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/<% if (typeof(post.meta.track_kind) != 'undefined' && post.meta.track_kind == 'playlist') { %>playlists<% } else { %>tracks<% } %>/<%= post.meta.track_id %>&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
     <input type="hidden" id="fileName" value="<%= post.fileName %>">
     <button type="submit" class="btn btn-primary" data-loading-text="Saving...">Save</button>
     <a class="cancel" href="#/show/<%= post.fileName %>">Cancel</a>
@@ -84,9 +85,44 @@ layout: admin
   </form>
 </script>
 
+<script type="text/template" id="post-create-template">
+  <h3>New Post</h3>
+  <form role="form" class="create-post">
+    <div class="form-group">
+      <label for="url">Soundcloud URL</label>
+      <input type="text" class="form-control" id="url">
+    </div>
+    <button type="submit" class="btn btn-default" data-loading-text="Checking Soundcloud...">Submit</button>
+    <a class="cancel" href="#">Cancel</a>
+  </form>
+</script>
+
+<script type="text/template" id="post-docreate-template">
+  <h3>New Post</h3>
+  <form role="form" class="docreate-post">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" value="<%= title %>">
+    </div>
+    <div class="form-group">
+      <label for="title">Date</label>
+      <input type="text" class="form-control" id="date" value="<%= date %>">
+    </div>
+    <iframe width="100%" height="550" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/<% if (typeof(kind) != 'undefined' && kind == 'playlist') { %>playlists<% } else { %>tracks<% } %>/<%= id %>&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+    <input type="hidden" id="id" value="<%= id %>">
+    <input type="hidden" id="kind" value="<%= kind %>">
+    <input type="hidden" id="permalink" value="<%= permalink %>">
+    <input type="hidden" id="url" value="<%= url %>">
+    <button type="submit" class="btn btn-primary" data-loading-text="Creating...">Create</button>
+    <a class="cancel" href="#">Cancel</a>
+  </form>
+</script>
+
 <div class="github"
      data-username="{{ site.admin.github_username }}"
-     data-repo="{{ site.admin.github_repo }}"></div>
+     data-repo="{{ site.admin.github_repo }}"
+     data-soundcloud-client-id="{{ site.admin.soundcloud_client_id }}"></div>
 
+<script src="//connect.soundcloud.com/sdk.js"></script>
 <script src="../js/octokit.js"></script>
 <script src="../js/admin.js"></script>
