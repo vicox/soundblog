@@ -154,8 +154,14 @@
 
         },
         render: function (options) {
-            var template = _.template($('#post-delete-template').html(), {post: {fileName: options.fileName}});
-            this.$el.html(template);
+            var that = this;
+            branch.contents('_posts/' + options.fileName)
+                .then(function (content) {
+                    var template = _.template($('#post-delete-template').html(), {post: {
+                        fileName: options.fileName,
+                        meta: contentToMap(content, true)}});
+                    that.$el.html(template);
+                });
         }
     });
 

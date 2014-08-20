@@ -40,7 +40,7 @@ layout: admin
 </script>
 
 <script type="text/template" id="post-show-template">
-  <h3><%= post.fileName %></h3>
+  <h3><%= post.meta.title %></h3>
   <div class="post">
     <div class="actions">
       <div class="actions-left">
@@ -56,7 +56,7 @@ layout: admin
 </script>
 
 <script type="text/template" id="post-edit-template">
-  <h3><%= post.fileName %></h3>
+  <h3><%= post.meta.title %></h3>
   <form role="form" class="edit-post">
     <div class="form-group">
       <label for="title">Title</label>
@@ -73,10 +73,10 @@ layout: admin
 </script>
 
 <script type="text/template" id="post-delete-template">
-  <h3><%= post.fileName %></h3>
+  <h3><%= post.meta.title %></h3>
   <form role="form" class="delete-post">
     <div class="alert alert-danger alert-dismissible" role="alert">
-      Are you sure that you want to delete this post?
+      Are you sure that you want to delete <strong><%= post.fileName %></strong>?
     </div>
     <input type="hidden" id="fileName" value="<%= post.fileName %>">
     <button type="submit" class="btn btn-danger" data-loading-text="Deleting...">Delete</button>
