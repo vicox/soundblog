@@ -25,7 +25,7 @@
                     password: password
                 });
 
-                var repo = github.getRepo(this.$el.data('username'), this.$el.data('repo'));
+                var repo = github.getRepo(this.$el.data('github-username'), this.$el.data('github-repo'));
 
                 repo.canCollaborate().then(function(canCollaborate) {
                     if (canCollaborate) {
