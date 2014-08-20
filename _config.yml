@@ -11,3 +11,8 @@ github_username:  jekyll
 markdown: kramdown
 permalink: pretty
 paginate: 5
+
+admin:
+  github_username: vicox
+  github_repo: soundblog
+  soundcloud_client_id: 0686300807bd25cd798c519f70192c31

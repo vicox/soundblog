@@ -1,0 +1,48 @@
+.admin {
+  width: 550px;
+  margin: 0 auto;
+  margin-bottom: 60px;
+}
+
+.admin .posts > h3 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.admin .posts iframe {
+  margin-bottom: 10px;
+}
+
+.admin .posts form .cancel {
+  margin-left: 10px;
+}
+
+.admin .posts .all-posts .actions {
+  margin-top: -45px;
+}
+
+.admin .posts .actions {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.admin .posts .actions a.text {
+  padding: 6px 0;
+  display: inline-block;
+}
+
+.admin .posts .actions-right {
+  float: right;
+}
+
+.admin .posts .actions-right a {
+  margin-left: 5px;
+}
+
+.admin .posts .actions-left {
+  float: left;
+}
+
+.admin .posts .actions-left a {
+  margin-right: 5px;
+}
