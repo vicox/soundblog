@@ -27,16 +27,23 @@ layout: admin
 </script>
 
 <script type="text/template" id="posts-template">
-  <h3 class="has-actions">All Posts <a href="#/create" class="btn btn-primary action" role="button">New Post</a></h3>
-  <% if (typeof(files) != 'undefined') { %>
-    <div class="list-group posts">
-      <% _.each(files, function(file) { %>
-        <a href="#/show/<%= file.name %>" class="list-group-item"><%= file.name %></a>
-      <% }); %>
+  <h3>All Posts</h3>
+  <div class="all-posts">
+    <div class="actions">
+      <div class="actions-right">
+        <a href="#/create" class="btn btn-primary action" role="button">New Post</a>
+      </div>
     </div>
-  <% } else { %>
-    <p>No posts found.</p>
-  <% } %>
+    <% if (typeof(files) != 'undefined') { %>
+      <div class="list-group posts">
+        <% _.each(files, function(file) { %>
+          <a href="#/show/<%= file.name %>" class="list-group-item"><%= file.name %></a>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No posts found.</p>
+    <% } %>
+  </div>
 </script>
 
 <script type="text/template" id="post-show-template">
