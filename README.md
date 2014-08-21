@@ -10,7 +10,7 @@ To add posts you can do it manually, use the Python script, or use the admin int
 ### The Admin Interface
 
 If your soundblog is hosted on [Github](https://github.com/) you can use the admin interface if you add `/admin`
-to your URL. From there you can add, edit and delete posts.
+to your URL. Just sign in with your Github credentials. From there you can add, edit and delete posts.
 
 Your github username (or organization) and repository must be configured in `_config.yml`.
 
