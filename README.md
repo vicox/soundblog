@@ -5,11 +5,11 @@ the [Inspired](https://github.com/vicox/inspired) theme that allows you to easil
 
 ## Posting
 
-To add posts you can do it manually, use the Python script, or use the admin interface.
+To add posts you can do it manually, use the Python script, or use the admin page.
 
-### The Admin Interface
+### The Admin Page
 
-If your soundblog is hosted on [Github](https://github.com/) you can use the admin interface if you add `/admin`
+If your soundblog is hosted on [Github](https://github.com/) you can use the admin page if you add `/admin`
 to your URL. Just sign in with your Github credentials. From there you can add, edit and delete posts.
 
 Your github username (or organization) and repository must be configured in `_config.yml`.
