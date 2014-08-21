@@ -40,31 +40,46 @@ the <a href="https://github.com/vicox/inspired">Inspired</a> theme that allows y
 <h2>
 <a name="posting" class="anchor" href="#posting"><span class="octicon octicon-link"></span></a>Posting</h2>
 
+<p>To add posts you can do it manually, use the Python script, or use the admin interface.</p>
+
+<h3>
+<a name="the-admin-interface" class="anchor" href="#the-admin-interface"><span class="octicon octicon-link"></span></a>The Admin Interface</h3>
+
+<p>If your soundblog is hosted on <a href="https://github.com/">Github</a> you can use the admin interface if you add <code>/admin</code>
+to your URL. Just sign in with your Github credentials. From there you can add, edit and delete posts.</p>
+
+<p>Your github username (or organization) and repository must be configured in <code>_config.yml</code>.</p>
+
+<pre><code>admin:
+  github_username: vicox
+  github_repo: soundblog
+  soundcloud_client_id: 0686300807bd25cd798c519f70192c31
+</code></pre>
+
+<p>You can use the provided Soundcloud client ID, or you can create your own here: <a href="http://soundcloud.com/you/apps/new">http://soundcloud.com/you/apps/new</a></p>
+
+<h3>
+<a name="the-python-script" class="anchor" href="#the-python-script"><span class="octicon octicon-link"></span></a>The Python Script</h3>
+
 <p>Use the Python script <code>_post.py</code> to post a track from Soundcloud. The first parameter ist the Soundcloud track URL.
 The second parameter is an optional posting date with the format YYYY-MM-DD. If you provide a date, the time will
 be set to 13:00.</p>
 
-<h3>
-<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
+<h4>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h4>
 
 <p>You need to have Python and the <a href="https://github.com/soundcloud/soundcloud-python">Python Soundcloud module</a> installed.</p>
 
 <pre><code>pip install soundcloud
 </code></pre>
 
-<p>Then you need to set the client ID environment variable SOUNDCLOUD_CLIENT_ID. You get a client ID if you create a
-Soundcloud application here: <a href="http://soundcloud.com/you/apps/new">http://soundcloud.com/you/apps/new</a></p>
-
-<pre><code>export SOUNDCLOUD_CLIENT_ID="&lt;client id&gt;"
-</code></pre>
-
-<p>Now make <code>_post.py</code> executable.</p>
+<p>Make <code>_post.py</code> executable.</p>
 
 <pre><code>chmod +x _post.py
 </code></pre>
 
-<h3>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h3>
+<h4>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h4>
 
 <pre><code>./_post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart
 </code></pre>
