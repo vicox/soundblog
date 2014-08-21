@@ -31,18 +31,13 @@ be set to 13:00.
 You need to have Python and the [Python Soundcloud module](https://github.com/soundcloud/soundcloud-python) installed.
    
     pip install soundcloud
-    
-Then you need to set the client ID environment variable SOUNDCLOUD_CLIENT_ID. You get a client ID if you create a
-Soundcloud application here: http://soundcloud.com/you/apps/new
-
-    export SOUNDCLOUD_CLIENT_ID="<client id>"
-    
   
-Now make `_post.py` executable.
+Make `_post.py` executable.
 
     chmod +x _post.py
 
 ####Example
+
     ./_post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart
     
 or with a specific date

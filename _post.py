@@ -9,11 +9,9 @@
     2: Post date with format YYYY-MM-DD. Example: 2014-08-02
         If a date is provided, the time will be set to 13:00
 
-  Note: The environment variable SOUNDCLOUD_CLIENT_ID must be set with your Soundcloud
-  client ID, i.e.: export SOUNDCLOUD_CLIENT_ID="<client id>"
-  You can create an application here to get a client ID: http://soundcloud.com/you/apps/new
-
 """
+
+SOUNDCLOUD_CLIENT_ID = '0686300807bd25cd798c519f70192c31'
 
 import sys
 import os
@@ -21,7 +19,7 @@ import time
 import datetime
 import soundcloud
 
-client = soundcloud.Client(client_id=os.environ['SOUNDCLOUD_CLIENT_ID'])
+client = soundcloud.Client(client_id=SOUNDCLOUD_CLIENT_ID)
 track = client.get('/resolve', url=sys.argv[1])
 
 if len(sys.argv) > 2:
