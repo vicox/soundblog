@@ -5,6 +5,8 @@ the [Inspired](https://github.com/vicox/inspired) theme that allows you to easil
 
 ## Posting
 
+To add posts you can do it manually, use the Python script, or use the admin interface.
+
 ### The Admin Interface
 
 If your soundblog is hosted on [Github](https://github.com/) you can use the admin interface if you add `/admin`
