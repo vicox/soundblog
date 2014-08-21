@@ -5,11 +5,27 @@ the [Inspired](https://github.com/vicox/inspired) theme that allows you to easil
 
 ## Posting
 
+### The Admin Interface
+
+If your soundblog is hosted on [Github](https://github.com/) you can use the admin interface if you add `/admin`
+to your URL. From there you can add, edit and delete posts.
+
+Your github username (or organization) and repository must be configured in `_config.yml`.
+
+    admin:
+      github_username: vicox
+      github_repo: soundblog
+      soundcloud_client_id: 0686300807bd25cd798c519f70192c31
+  
+You can use the provided Soundcloud client ID, or you can create your own here: http://soundcloud.com/you/apps/new
+
+### The Python Script
+
 Use the Python script `_post.py` to post a track from Soundcloud. The first parameter ist the Soundcloud track URL.
 The second parameter is an optional posting date with the format YYYY-MM-DD. If you provide a date, the time will
 be set to 13:00.
 
-### Requirements
+#### Requirements
 You need to have Python and the [Python Soundcloud module](https://github.com/soundcloud/soundcloud-python) installed.
    
     pip install soundcloud
@@ -24,7 +40,7 @@ Now make `_post.py` executable.
 
     chmod +x _post.py
 
-### Example
+####Example
     ./_post.py https://soundcloud.com/allefarben/alle-farben-45-winterheart
     
 or with a specific date
