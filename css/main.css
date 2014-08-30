@@ -91,29 +91,29 @@ a:visited { color: #205caa; }
 .site-footer .column { float: left; margin-bottom: 15px; }
 
 .footer-col-1 {
-  width: 270px; /*fallback*/
-  width: -webkit-calc(35% - 10px);
-  width: -moz-calc(35% - 10px);
-  width: -o-calc(35% - 10px);
-  width: calc(35% - 10px);
-  margin-right: 10px;
+  width: 195px; /*fallback*/
+  width: -webkit-calc(30%);
+  width: -moz-calc(30%);
+  width: -o-calc(30%);
+  width: calc(30%);
   text-align: left;
 }
 .footer-col-2 {
-  width: 175px; /*fallback*/
-  width: -webkit-calc(23.125% - 10px);
-  width: -moz-calc(23.125% - 10px);
-  width: -o-calc(23.125% - 10px);
-  width: calc(23.125% - 10px);
+  width: 240px; /*fallback*/
+  width: -webkit-calc(40% - 20px);
+  width: -moz-calc(40% - 20px);
+  width: -o-calc(40% - 20px);
+  width: calc(40% - 20px);
+  margin-left: 10px;
   margin-right: 10px;
   text-align: center;
 }
 .footer-col-3 {
-  width: 335px; /*fallback*/
-  width: -webkit-calc(41.875%);
-  width: -moz-calc(41.875%);
-  width: -o-calc(41.875%);
-  width: calc(41.875%);
+  width: 195px; /*fallback*/
+  width: -webkit-calc(30%);
+  width: -moz-calc(30%);
+  width: -o-calc(30%);
+  width: calc(30%);
   text-align: right;
 }
 
