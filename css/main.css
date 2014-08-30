@@ -106,7 +106,7 @@ a:visited { color: #205caa; }
   width: -o-calc(23.125% - 10px);
   width: calc(23.125% - 10px);
   margin-right: 10px;
-  text-center: center;
+  text-align: center;
 }
 .footer-col-3 {
   width: 335px; /*fallback*/
