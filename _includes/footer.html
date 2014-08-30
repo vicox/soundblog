@@ -46,8 +46,9 @@
         {% assign pages = site.pages | sort: 'weight' %}
         {% for page in pages %}
           {% if page.title and page.nav == 'footer' %}
+            {% if hasItems %}&middot;{% endif %}
             <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-            {% if forloop.last %}{% else %}&middot;{% endif %}
+            {% assign hasItems = true %}
           {% endif %}
         {% endfor %}
       </nav>
