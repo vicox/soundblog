@@ -60,14 +60,10 @@ a:visited { color: #205caa; }
   text-align: center;
 }
 
-.site-nav {
-  float: right;
-}
-
 .site-nav .menu-icon { display: none; }
 
 .site-nav .page-link {
-  margin-left: 20px;
+  margin: 0 10px;
   color: #333;
   letter-spacing: -.5px;
 }
