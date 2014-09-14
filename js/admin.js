@@ -3,7 +3,7 @@
     var next = window.location.hash = (window.location.hash != '#/login') ? window.location.hash : '';
     window.location.hash = '#/login';
 
-    var branch;
+    var repo;
 
     var LoginView = Backbone.View.extend({
         el: '.posts',
@@ -20,16 +20,15 @@
             var password = $form.find('#password').val();
 
             if (username && password) {
-                var github = new Octokit({
+                var octo = new Octokat({
                     username: username,
                     password: password
                 });
 
-                var repo = github.getRepo(this.$el.data('github-username'), this.$el.data('github-repo'));
+                repo = octo.repos(this.$el.data('github-username'), this.$el.data('github-repo'));
 
-                repo.canCollaborate().then(function(canCollaborate) {
-                    if (canCollaborate) {
-                        branch = repo.getBranch("master");
+                repo.collaborators.contains(this.$el.data('github-username')).then(function(isCollaborator) {
+                    if (isCollaborator) {
                         window.location.hash = next;
 
                     } else {
@@ -52,9 +51,8 @@
         el: '.posts',
         render: function (options) {
             var that = this;
-            branch.contents('_posts')
+            repo.contents('_posts').fetch()
                 .then(function (files) {
-                    files = JSON.parse(files);
                     files = _.sortBy(files, function(file){ return file.name });
                     files.reverse();
                     var template = _.template($('#posts-template').html(), {files: files});
@@ -70,8 +68,9 @@
         el: '.posts',
         render: function (options) {
             var that = this;
-            branch.contents('_posts/' + options.fileName)
-                .then(function (content) {
+            repo.contents('_posts/' + options.fileName).fetch()
+                .then(function (file) {
+                    var content = Base64.decode(file.content);
                     var template = _.template($('#post-show-template').html(), {post: {
                         fileName: options.fileName,
                         meta: contentToMap(content, true)}});
@@ -95,8 +94,9 @@
             var title = $form.find('#title').val();
             var date = $form.find('#date').val();
 
-            branch.contents('_posts/' + fileName)
-                .then(function (content) {
+            repo.contents('_posts/' + fileName).fetch()
+                .then(function (file) {
+                    var content = Base64.decode(file.content);
                     var metaMap = contentToMap(content);
                     metaMap['title'] = '"' + title + '"';
                     metaMap['date'] = date;
@@ -105,16 +105,26 @@
 
                     var dayFromDate = date.substring(0, 10);
                     if (fileName.indexOf(dayFromDate) == 0) {
-                        branch.write('_posts/' + fileName, newContent, 'edit post', false)
-                            .then(function() {
+                        repo.contents('_posts/' + fileName).add({
+                            path: '_posts/' + fileName,
+                            message: 'edit post',
+                            content: Base64.encode(newContent),
+                            sha: file.sha
+                        }).then(function() {
                                 window.location.hash = '#/show/' +fileName;
                             });
                     } else {
                         var newFileName = dayFromDate + fileName.substring(10, fileName.length);
-                        branch.write('_posts/' + newFileName, newContent, 'create post', false)
-                            .then(function() {
-                                branch.remove('_posts/' + fileName, 'delete post')
-                                    .then(function() {
+                        repo.contents('_posts/' + newFileName).add({
+                            path: '_posts/' + newFileName,
+                            message: 'create post',
+                            content: Base64.encode(newContent)
+                        }).then(function() {
+                                repo.contents('_posts/' + fileName).remove({
+                                    path: '_posts/' + fileName,
+                                    message: 'delete post',
+                                    sha: file.sha
+                                }).then(function() {
                                         window.location.hash = '#/show/' + newFileName;
                                     });
                             });
@@ -125,8 +135,9 @@
         },
         render: function (options) {
             var that = this;
-            branch.contents('_posts/' + options.fileName)
-                .then(function (content) {
+            repo.contents('_posts/' + options.fileName).fetch()
+                .then(function (file) {
+                    var content = Base64.decode(file.content);
                     var template = _.template($('#post-edit-template').html(), {post: {
                         fileName: options.fileName,
                         meta: contentToMap(content, true)}});
@@ -148,17 +159,22 @@
 
             var fileName = $form.find('#fileName').val();
 
-            branch.remove('_posts/' + fileName, 'delete post')
-                .then(function() {
-                    window.location.hash = '#';
+            repo.contents('_posts/' + fileName).fetch()
+                .then(function (file) {
+                    repo.contents('_posts/' + fileName).remove({
+                        path: '_posts/' + fileName,
+                        message: 'delete post',
+                        sha: file.sha
+                    }).then(function() {
+                        window.location.hash = '#';
+                    });
                 });
-
-
         },
         render: function (options) {
             var that = this;
-            branch.contents('_posts/' + options.fileName)
-                .then(function (content) {
+            repo.contents('_posts/' + options.fileName).fetch()
+                .then(function (file) {
+                    var content = Base64.decode(file.content);
                     var template = _.template($('#post-delete-template').html(), {post: {
                         fileName: options.fileName,
                         meta: contentToMap(content, true)}});
@@ -226,8 +242,11 @@
             var dayFromDate = date.substring(0, 10);
             var fileName = dayFromDate + '-' + $form.find('#permalink').val() + '.md';
 
-            branch.write('_posts/' + fileName, mapToContent(map), 'new post', false)
-                .then(function() {
+            repo.contents('_posts/' + fileName).add({
+                path: '_posts/' + fileName,
+                message: 'new post',
+                content: Base64.encode(mapToContent(map))
+            }).then(function() {
                     window.location.hash = '#/show/' + fileName;
                 });
 
