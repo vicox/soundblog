@@ -27,7 +27,7 @@
 
                 repo = octo.repos(this.$el.data('github-username'), this.$el.data('github-repo'));
 
-                repo.collaborators.contains(this.$el.data('github-username')).then(function(isCollaborator) {
+                repo.collaborators.contains(username).then(function(isCollaborator) {
                     if (isCollaborator) {
                         window.location.hash = next;
 
