@@ -12,6 +12,8 @@ markdown: kramdown
 permalink: pretty
 paginate: 5
 
+gems: [jekyll-paginate]
+
 admin:
   github_username: vicox
   github_repo: soundblog
